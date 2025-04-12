@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/Inter_18pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterBold';
+    src: url('/fonts/Inter_18pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterSemiBold';
+    src: url('/fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
+header h1, h2 {
+    color: #262730;
+    font-family: 'InterBold';
+}
+
+header h3 {
+    color: #77BA99;
+    font-family: 'InterBold';
+}
+
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+.nav-class {
+    background-color: #D95961;
+}
+
+.nav-link {
+    background-color: #D95961;
+    color: #EFEFEF;
+    font-family: 'InterSemiBold';
+}
+
+.nav-link:hover, .nav-link:active {
+    background-color: #EFEFEF;
+    color: #D95961;
+}
+
+.nav-link:visited {
+    color: white;
+}
+
+.nav-link:hover, .nav-link:active {
+    color: #D95961;
+}
+
+.config {
+    width: auto;
+    height: 50px;
+    align-items: center;
+}
+
+.config img {
+    max-width: 70px;
+    transition: opacity 0.3s ease-in-out;
+    margin-top: 5px;
+}
+
+.config:hover img, .config:active img {
+    content: url('../images/config_rojo.png');
+    opacity: 0.8;
+}
+
+.config:hover a, .config:active a {
+    color: #D95961 !important;
+}
+
+.config:hover, .config:active {
+    background-color: #EFEFEF;
+    border-radius: 6px;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.but-crear {
+    font-family: 'InterSemiBold';
+    background-color: white;
+    border: #D95961 solid 1.5px;
+    color:  #D95961;
+    height: 50px;
+    width: 350px;
+    border-radius: 15px;
+    font-family: 'InterSemiBold';
+    font-size: 20px;
+    text-align: center;
+}
+
+.but-crear:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #D95961;
+    border: white 2px solid;
+}
+
+thead th {
+    padding: 15px;
+    border-bottom: #D7C0D0 3px solid !important;
+    border-top: #D7C0D0 3px solid !important;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'InterBold';
+}
+
+tbody td {
+    padding: 15px;
+    border-bottom: #D7C0D0 1.5px solid !important;
+    text-align: center;
+    vertical-align: middle;
+    font-family: 'Inter';
+}
+
+tbody img {
+    max-width: 70px;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 50px;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: auto;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: auto;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 50px;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+    width: 100px;
+}
+
+

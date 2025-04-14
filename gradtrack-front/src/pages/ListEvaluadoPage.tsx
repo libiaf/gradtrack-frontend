@@ -8,7 +8,7 @@ import BuscarEvaluados from "../components/BuscarEvaluados";
 import List from "../components/List";
 
 const ListEvaluadoPage = () => {
-  const [zonaId, setZonaId] = useState<number | null>(null); // null = Todas las zonas
+  const [zonaId, setZonaId] = useState<number | null>(null);
   const [poblacionId, setPoblacionId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [evaluados, setEvaluados] = useState<Evaluado[]>([]);
@@ -16,16 +16,14 @@ const ListEvaluadoPage = () => {
   const [zonas, setZonas] = useState<Zona[]>([]);
   const [poblaciones, setPoblaciones] = useState<Poblacion[]>([]);
 
-  // Fetch evaluados y zonas al cargar
   useEffect(() => {
     getAllEvaluados().then((data: Evaluado[]) => {
       setEvaluados(data);
-      setFilteredEvaluados(data); // Mostrar todos al inicio
+      setFilteredEvaluados(data);
     });
     getZonas().then((data: Zona[]) => setZonas(data));
   }, []);
 
-  // Fetch poblaciones cuando se selecciona zona (y no es "Todas")
   useEffect(() => {
     if (zonaId) {
       getPoblacionesByZona(zonaId).then((data: Poblacion[]) => setPoblaciones(data));
@@ -35,11 +33,9 @@ const ListEvaluadoPage = () => {
     }
   }, [zonaId]);
 
-  // Filtrar evaluados
   useEffect(() => {
     let filtered = evaluados;
     
-    // Filtrar por zona si está seleccionada (y no es "Todas")
     if (zonaId) {
       filtered = filtered.filter(evaluado => {
         const poblacion = poblaciones.find(p => p.id === evaluado.poblacionId);
@@ -47,12 +43,10 @@ const ListEvaluadoPage = () => {
       });
     }
 
-    // Filtrar por población si está seleccionada
     if (poblacionId) {
       filtered = filtered.filter(evaluado => evaluado.poblacionId === poblacionId);
     }
 
-    // Filtrar por término de búsqueda
     if (searchTerm.trim() !== "") {
       filtered = filtered.filter(evaluado =>
         `${evaluado.nombre} ${evaluado.apellidos}`.toLowerCase()
@@ -86,7 +80,7 @@ const ListEvaluadoPage = () => {
           }}
         />
 
-        {zonaId && ( // Solo mostrar filtro de población si hay zona seleccionada
+        {zonaId && (
           <PoblacionFilter
             poblaciones={poblaciones}
             onPoblacionSelect={(id) => setPoblacionId(id)}

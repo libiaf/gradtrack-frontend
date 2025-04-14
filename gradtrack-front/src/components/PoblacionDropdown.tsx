@@ -1,17 +1,16 @@
 import { Poblacion } from "my-types";
 
 type Props = {
-  // zonaId: number | null;
-  poblaciones: Poblacion[]; // Recibimos las poblaciones correspondientes a la zona
-  onPoblacionSelect: (id: number) => void; // Función para manejar la selección de una población
-  disabled: boolean; // Condición para habilitar/deshabilitar el dropdown
+  poblaciones: Poblacion[];
+  onPoblacionSelect: (id: number) => void;
+  disabled: boolean;
 };
 
 const PoblacionFilter = ({ poblaciones, onPoblacionSelect, disabled }: Props) => {
   return (
     <select
       onChange={(e) => onPoblacionSelect(Number(e.target.value))}
-      disabled={disabled} // Se deshabilita si no hay zona seleccionada
+      disabled={disabled}
       className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
     >
       <option value="" disabled>

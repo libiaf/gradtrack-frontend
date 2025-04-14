@@ -25,4 +25,25 @@ export const deleteEvaluado = async (id: number) => {
       throw error;
     }
   };
+
+// PARA FILTROS
+export const getZonas = async () => {
+    try {
+        const res = await api.get("/evaluados/zonas");
+        return res.data.payload;
+    } catch (error) {
+        console.error("Error al obtener zonas:", error);
+        return [];
+    }
+};
+
+export const getPoblacionesByZona = async (zonaId: number) => {
+  try {
+      const res = await api.get(`/evaluados/poblaciones/${zonaId}`);
+      return res.data.payload;
+  } catch (error) {
+      console.error("Error al obtener poblaciones:", error);
+      return [];
+  }
+};
   

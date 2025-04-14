@@ -2,10 +2,9 @@ import { useState, useEffect } from "react";
 import { Evaluado, Zona, Poblacion } from "my-types";
 import { getAllEvaluados, getZonas, getPoblacionesByZona } from "../api/EvaluadoAPI";
 import { deleteEvaluado } from "../api/EvaluadoAPI";
-import DropdownZonas from "../components/ZonaDropdown";
-import PoblacionFilter from "../components/PoblacionDropdown";
-import BuscarEvaluados from "../components/BuscarEvaluados";
-import List from "../components/List";
+import { Link } from "react-router-dom";
+import "../styles/listEvaluadoStyles.css";
+import Header from "../components/Header";
 
 const ListEvaluadoPage = () => {
   const [zonaId, setZonaId] = useState<number | null>(null);
@@ -15,6 +14,8 @@ const ListEvaluadoPage = () => {
   const [filteredEvaluados, setFilteredEvaluados] = useState<Evaluado[]>([]);
   const [zonas, setZonas] = useState<Zona[]>([]);
   const [poblaciones, setPoblaciones] = useState<Poblacion[]>([]);
+  const [selectedZona, setSelectedZona] = useState<string>("San Pedro, Sonora");
+  const [poblacionInfo, setPoblacionInfo] = useState({ edad: "29 años", nivelSocioeconomico: "Medio" });
 
   useEffect(() => {
     getAllEvaluados().then((data: Evaluado[]) => {
@@ -68,49 +69,96 @@ const ListEvaluadoPage = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4 my-4 px-6">
-        <h3 className="text-3xl font-bold text-gray-800 text-left">Lista de evaluados</h3>
-
-        <DropdownZonas
-          zonas={zonas}
-          selectedZonaId={zonaId}
-          onZonaSelect={(id) => {
-            setZonaId(id);
-            setPoblacionId(null);
-          }}
-        />
-
-        {zonaId && (
-          <PoblacionFilter
-            poblaciones={poblaciones}
-            onPoblacionSelect={(id) => setPoblacionId(id)}
-            disabled={!zonaId}
+    <Header title="Evaluados"/>
+    <div className="list-evaluado-container">
+      <div className="add-evaluado-btn-container">
+        <button className="add-evaluado-btn">
+          Agregar evaluado
+        </button>
+      </div>
+      
+      <div className="filters-container">
+        <div className="search-bar-container">
+          <input 
+            type="text" 
+            className="search-evaluado" 
+            placeholder="Buscar evaluado..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
-        )}
-
-        <BuscarEvaluados
-          searchTerm={searchTerm}
-          onSearch={setSearchTerm}
-        />
-
-        <div className="flex justify-end items-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Add evaluado
-          </button>
+        </div>
+        
+        <div className="zone-poblacion-filters">
+          <div className="zona-filter">
+            <label>Zona:</label>
+            <div className="dropdown">
+              <select 
+                className="zona-select"
+                value={selectedZona}
+                onChange={(e) => {
+                  setSelectedZona(e.target.value);
+                  // Logic to set zonaId based on selection would go here
+                }}
+              >
+                <option value="San Pedro, Sonora">San Pedro, Sonora</option>
+                {/* Other zona options would be populated here */}
+              </select>
+            </div>
+          </div>
+          
+          <div className="poblacion-filter">
+            <label>Población:</label>
+            <div className="poblacion-info">
+              <div>Edad: {poblacionInfo.edad}</div>
+              <div>Nivel Socioeconómico: {poblacionInfo.nivelSocioeconomico}</div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className="relative overflow-x-auto px-6 pb-10">
-        {filteredEvaluados.length === 0 ? (
-          <div className="text-center py-4 text-gray-500">
-            {searchTerm.trim() !== "" 
-              ? "No se encontraron evaluados con el término de búsqueda" 
-              : "No hay evaluados para mostrar con los filtros actuales"}
-          </div>
-        ) : (
-          <List evaluados={filteredEvaluados} onDelete={handleDelete} />
-        )}
+      
+      <div className="table-container">
+        <table className="evaluados-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredEvaluados.length > 0 ? (
+              evaluados.map((evaluado) => (
+                <tr key={evaluado.id}>
+                  <td>{evaluado.id}</td>
+                  <td>{evaluado.nombre}</td>
+                  <td>{evaluado.apellidos}</td>
+                  <td className="actions-cell">
+                    <button className="action-btn details-btn">
+                      <i className="fas fa-ellipsis-h"></i>
+                    </button>
+                    <button 
+                      className="action-btn delete-btn"
+                      onClick={() => handleDelete(evaluado.id)}
+                    >
+                      <i className="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="no-results">
+                  {searchTerm.trim() !== "" 
+                    ? "No se encontraron evaluados con el término de búsqueda" 
+                    : "No hay evaluados para mostrar con los filtros actuales"}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
+    </div>
     </>
   );
 };

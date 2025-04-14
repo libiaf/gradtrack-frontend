@@ -4,7 +4,7 @@ import "../styles/navStyles.css";
 
 export default function Nav() {
   return (
-    <nav className="nav-class col-lg-3 col-xl-2 text-white p-4 d-flex flex-column min-vh-100">
+    <nav className="nav-class col-12 col-lg-3 col-xl-2 text-white p-4 d-flex flex-column custom-nav-height">
       <div className="text-center mb-4">
         <img
           src={logoImg}

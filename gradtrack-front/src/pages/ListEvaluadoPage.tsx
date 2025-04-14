@@ -1,5 +1,6 @@
 import Filter from "../components/Filter";
 import List from "../components/List";
+import Header from "../components/Header";
 
 import { Evaluado } from "my-types";
 import { useState, useEffect } from "react";
@@ -32,6 +33,7 @@ const ListPerson = () => {
 
   return (
     <>
+      <Header title="Evaluados"/>
 
       <div className="flex flex-col gap-4 my-4 px-6">
         <h3 className="text-3xl font-bold text-gray-800 text-left">Lista de evaluados</h3>

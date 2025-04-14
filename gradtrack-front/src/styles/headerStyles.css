@@ -46,7 +46,7 @@ header h1 {
 }
 
 header .evaluados {
-    margin-left: 20px; /* Ajustamos para no pegarse al borde */
+    margin-left: 20px; 
 }
 
 .nav-class {
@@ -173,9 +173,8 @@ label {
     font-size: 20px;
 }
 
-/* Ajuste para el contenido */
 body {
-    padding-top: 120px; /* Evita que el contenido quede oculto debajo del header */
+    padding-top: 120px;
 }
 
 @media (max-width: 992px) {

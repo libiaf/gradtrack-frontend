@@ -1,218 +1,260 @@
-/* listEvaluadoStyles.css */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
-
-:root {
-  --primary-red: #D95961;
-  --primary-red-transparent: rgba(217, 89, 97, 0.65);
-  --primary-purple: #C898B9;
-  --light-purple: #D7C0D0;
-  --dark-purple: #643455;
-  --text-dark: #262730;
-  --white: #FFFFFF;
-}
-
-.list-evaluado-container {
-  font-family: 'Arial', sans-serif;
-  padding: 20px;
+/* Estilos generales */
+.evaluado-container {
+  padding: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* Add Evaluado Button */
-.add-evaluado-btn-container {
+.evaluado-header {
   display: flex;
-  justify-content: flex-start;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-.add-evaluado-btn {
-  background-color: var(--white);
-  color: var(--primary-red);
-  border: 2px solid var(--primary-red);
-  border-radius: 50px;
-  padding: 10px 25px;
+.evaluado-title {
+  font-size: 1.5rem;
   font-weight: bold;
-  font-size: 16px;
+  color: #262730;
+}
+
+/* Botón Agregar evaluado */
+.add-evaluado-btn {
+  background-color: #D95961;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 30px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(217, 89, 97, 0.3);
+  transition: all 0.3s ease;
 }
 
 .add-evaluado-btn:hover {
-  background-color: var(--primary-red);
-  color: var(--white);
+  background-color: #c84d54;
+  transform: translateY(-2px);
 }
 
-/* Filters Container */
+/* Search container */
+.search-container {
+  margin-bottom: 1.5rem;
+  width: 100%;
+}
+
+/* Estilos para sobrescribir el componente BuscarEvaluados */
+:global(.search-input) {
+  width: 100%;
+  background-color: rgba(217, 89, 97, 0.65);
+  border: 2px solid #D95961;
+  border-radius: 30px;
+  padding: 0.75rem 1.5rem;
+  color: #FFFFFF;
+  font-size: 1rem;
+}
+
+:global(.search-input::placeholder) {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+:global(.search-input:focus) {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(217, 89, 97, 0.5);
+}
+
+/* Filtros */
 .filters-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 15px;
   margin-bottom: 20px;
 }
 
-/* Search Bar */
-.search-bar-container {
-  width: 100%;
-}
-
-.search-evaluado {
-  width: 100%;
-  padding: 12px 15px;
-  border: 2px solid var(--primary-red);
-  border-radius: 50px;
-  background-color: var(--primary-red-transparent);
-  color: var(--white);
-  font-size: 16px;
-}
-
-.search-evaluado::placeholder {
-  color: var(--white);
-  opacity: 0.8;
-}
-
-.search-evaluado:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(217, 89, 97, 0.3);
-}
-
-/* Zone and Poblacion Filters */
-.zone-poblacion-filters {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.zona-filter, .poblacion-filter {
+.filter-zona {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--light-purple);
-  border-radius: 10px;
-  padding: 10px 15px;
+  min-width: 250px;
+  position: relative;
 }
 
-.zona-filter label, .poblacion-filter label {
-  color: var(--dark-purple);
+.filter-poblacion {
+  flex: 1;
+  min-width: 250px;
+  position: relative;
+}
+
+.filter-label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: white;
   font-weight: bold;
-  margin-bottom: 5px;
+  z-index: 10;
 }
 
-.zona-select {
+/* Sobrescribir estilos para el componente ZonaDropdown */
+:global(.zona-dropdown) {
   width: 100%;
-  padding: 8px 12px;
+  padding: 15px 15px 15px 100px;
+  border-radius: 25px;
   border: none;
-  border-radius: 5px;
-  background-color: var(--primary-purple);
-  color: var(--white);
-  font-size: 14px;
-  cursor: pointer;
+  background-color: #C898B9;
+  color: white;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' fill='white'%3E%3Cpath d='M0 0l6 6 6-6z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.poblacion-info {
-  background-color: var(--primary-purple);
-  color: var(--white);
-  padding: 8px 12px;
-  border-radius: 5px;
-  font-size: 14px;
+.filter-zona::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: white;
+  pointer-events: none;
 }
 
-/* Table Styles */
-.table-container {
-  max-height: 500px;
-  overflow-y: auto;
-  border-radius: 8px;
-  border: 1px solid var(--light-purple);
+:global(.zona-dropdown option) {
+  background-color: #D7C0D0;
+  color: white;
 }
 
-.table-container::-webkit-scrollbar {
-  width: 10px;
+/* Sobrescribir estilos para el componente PoblacionDropdown */
+:global(.poblacion-dropdown) {
+  width: 100%;
+  padding: 15px 15px 15px 120px;
+  border-radius: 25px;
+  border: none;
+  background-color: #C898B9;
+  color: white;
+  appearance: none;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.table-container::-webkit-scrollbar-track {
-  background: var(--white);
+.filter-poblacion::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: white;
+  pointer-events: none;
 }
 
-.table-container::-webkit-scrollbar-thumb {
-  background-color: var(--light-purple);
+:global(.poblacion-dropdown option) {
+  background-color: #D7C0D0;
+  color: white;
+}
+
+:global(.poblacion-dropdown:disabled) {
+  background-color: #D7C0D0;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Tabla */
+.evaluado-table-container {
+  overflow-x: auto;
   border-radius: 10px;
-  border: 2px solid var(--white);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-height: 600px;
+  overflow-y: auto;
 }
 
-.evaluados-table {
+/* Personalización del scrollbar */
+.evaluado-table-container::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.evaluado-table-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+.evaluado-table-container::-webkit-scrollbar-thumb {
+  background: #D7C0D0;
+  border-radius: 5px;
+}
+
+.evaluado-table-container::-webkit-scrollbar-thumb:hover {
+  background: #C898B9;
+}
+
+/* Estilos para la tabla */
+:global(.evaluado-table) {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--white);
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.evaluados-table thead {
-  background-color: var(--light-purple);
-  color: var(--dark-purple);
-  position: sticky;
-  top: 0;
-}
-
-.evaluados-table th {
-  padding: 12px 15px;
+:global(.evaluado-table th) {
+  background-color: #D7C0D0;
+  color: #643455;
+  font-weight: 600;
   text-align: left;
-  font-weight: bold;
-  border-bottom: 1px solid var(--light-purple);
+  padding: 1rem;
+  border-bottom: 2px solid #D7C0D0;
 }
 
-.evaluados-table td {
-  padding: 12px 15px;
-  color: var(--text-dark);
-  border-bottom: 1px solid var(--light-purple);
+:global(.evaluado-table td) {
+  padding: 0.75rem 1rem;
+  color: #262730;
+  border-bottom: 1px solid #D7C0D0;
 }
 
-.actions-cell {
+:global(.evaluado-table tr:hover) {
+  background-color: rgba(215, 192, 208, 0.1);
+}
+
+/* Botones de acción */
+:global(.action-buttons) {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
+  gap: 0.5rem;
+  justify-content: center;
 }
 
-.action-btn {
+:global(.action-button) {
   background: none;
   border: none;
-  color: var(--primary-red);
   cursor: pointer;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  transition: background-color 0.2s;
+  color: #D95961;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
 }
 
-.action-btn:hover {
-  background-color: rgba(217, 89, 97, 0.1);
+:global(.action-button:hover) {
+  transform: scale(1.2);
 }
 
+/* Mensaje de no resultados */
 .no-results {
   text-align: center;
-  padding: 20px;
-  color: var(--text-dark);
+  padding: 2rem;
+  color: #643455;
+  background-color: rgba(215, 192, 208, 0.2);
+  border-radius: 10px;
+  font-weight: 500;
 }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
-  .zone-poblacion-filters {
+  .evaluado-header {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
   }
   
-  .evaluados-table {
-    font-size: 14px;
+  .add-evaluado-btn {
+    width: 100%;
   }
   
-  .action-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
+  .filters-container {
+    flex-direction: column;
   }
 }

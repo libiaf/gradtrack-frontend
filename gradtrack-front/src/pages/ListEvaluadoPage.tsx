@@ -6,6 +6,7 @@ import DropdownZonas from "../components/ZonaDropdown";
 import PoblacionFilter from "../components/PoblacionDropdown";
 import BuscarEvaluados from "../components/BuscarEvaluados";
 import List from "../components/List";
+import Header from "../components/Header";
 
 const ListEvaluadoPage = () => {
   const [zonaId, setZonaId] = useState<number | null>(null);
@@ -26,7 +27,14 @@ const ListEvaluadoPage = () => {
 
   useEffect(() => {
     if (zonaId) {
-      getPoblacionesByZona(zonaId).then((data: Poblacion[]) => setPoblaciones(data));
+      getPoblacionesByZona(zonaId).then((data: Poblacion[]) => {
+        setPoblaciones(data);
+        if (data.length > 0) {
+          setPoblacionId(data[0].id);
+        } else {
+          setPoblacionId(null);
+        }
+      });
     } else {
       setPoblaciones([]);
       setPoblacionId(null);
@@ -35,7 +43,7 @@ const ListEvaluadoPage = () => {
 
   useEffect(() => {
     let filtered = evaluados;
-    
+
     if (zonaId) {
       filtered = filtered.filter(evaluado => {
         const poblacion = poblaciones.find(p => p.id === evaluado.poblacionId);
@@ -68,25 +76,29 @@ const ListEvaluadoPage = () => {
 
   return (
     <>
+      <Header title="Evaluados" />
+
       <div className="flex flex-col gap-4 my-4 px-6">
         <h3 className="text-3xl font-bold text-gray-800 text-left">Lista de evaluados</h3>
 
-        <DropdownZonas
-          zonas={zonas}
-          selectedZonaId={zonaId}
-          onZonaSelect={(id) => {
-            setZonaId(id);
-            setPoblacionId(null);
-          }}
-        />
-
-        {zonaId && (
-          <PoblacionFilter
-            poblaciones={poblaciones}
-            onPoblacionSelect={(id) => setPoblacionId(id)}
-            disabled={!zonaId}
+        <div className="flex flex-row gap-4">
+          <DropdownZonas
+            zonas={zonas}
+            selectedZonaId={zonaId}
+            onZonaSelect={(id) => {
+              setZonaId(id);
+            }}
           />
-        )}
+
+          {zonaId && (
+            <PoblacionFilter
+              poblaciones={poblaciones}
+              onPoblacionSelect={(id) => setPoblacionId(id)}
+              disabled={!zonaId}
+              selectedPoblacionId={poblacionId}
+            />
+          )}
+        </div>
 
         <BuscarEvaluados
           searchTerm={searchTerm}
@@ -103,8 +115,8 @@ const ListEvaluadoPage = () => {
       <div className="relative overflow-x-auto px-6 pb-10">
         {filteredEvaluados.length === 0 ? (
           <div className="text-center py-4 text-gray-500">
-            {searchTerm.trim() !== "" 
-              ? "No se encontraron evaluados con el término de búsqueda" 
+            {searchTerm.trim() !== ""
+              ? "No se encontraron evaluados con el término de búsqueda"
               : "No hay evaluados para mostrar con los filtros actuales"}
           </div>
         ) : (

@@ -6,6 +6,7 @@ import DropdownZonas from "../components/ZonaDropdown";
 import PoblacionFilter from "../components/PoblacionDropdown";
 import BuscarEvaluados from "../components/BuscarEvaluados";
 import List from "../components/List";
+import Header from "../components/Header";
 
 const ListEvaluadoPage = () => {
   const [zonaId, setZonaId] = useState<number | null>(null);
@@ -75,10 +76,8 @@ const ListEvaluadoPage = () => {
 
   return (
     <>
-<<<<<<< HEAD
       <Header title="Evaluados" />
-=======
->>>>>>> d09d40b7b3822df522c9adc9452d97557e3f3612
+
       <div className="flex flex-col gap-4 my-4 px-6">
         <h3 className="text-3xl font-bold text-gray-800 text-left">Lista de evaluados</h3>
 

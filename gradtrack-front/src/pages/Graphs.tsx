@@ -14,6 +14,8 @@ import {
 import { getZonas, getPoblacionesByZona } from '../api/EvaluadoAPI';
 import { Zona, Poblacion } from 'my-types';
 import '../styles/graphsStyles.css';
+import DropdownZonas from '../components/ZonaDropdown';
+import PoblacionFilter from '../components/PoblacionDropdown';
 
 interface GraphsProps {
   initialZonaId?: number | null;
@@ -63,6 +65,10 @@ const Graphs: React.FC<GraphsProps> = ({ initialZonaId = null, initialPoblacionI
         try {
           const data = await getPoblacionesByZona(zonaId);
           setPoblaciones(data);
+          
+          if (data.length > 0 && !poblacionId) {
+            setPoblacionId(data[0].id);
+          }
           
           if (poblacionId && !data.some((p: Poblacion) => p.id === poblacionId)) {
             setPoblacionId(null);
@@ -217,44 +223,24 @@ const Graphs: React.FC<GraphsProps> = ({ initialZonaId = null, initialPoblacionI
 
   return (
     <div className="dashboard-container">
-      
-      {/* Filtros */}
-      <div className="filters-container">
-        <div className="filter-zona">
-          <span className="filter-label">Zona:</span>
-          <select
-            className="zona-dropdown"
-            value={zonaId || ""}
-            onChange={(e) => {
-              setZonaId(e.target.value ? Number(e.target.value) : null);
-              setPoblacionId(null);
-            }}
-          >
-            <option value="">Selecciona una zona</option>
-            {zonas.map((zona) => (
-              <option key={zona.id} value={zona.id}>
-                {zona.nombre}, {zona.estado}
-              </option>
-            ))}
-          </select>
-        </div>
-        
-        <div className="filter-poblacion">
-          <span className="filter-label">Población:</span>
-          <select
-            className="poblacion-dropdown"
-            value={poblacionId || ""}
-            onChange={(e) => setPoblacionId(e.target.value ? Number(e.target.value) : null)}
+      <div className="filters-container" style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+        <DropdownZonas
+          zonas={zonas}
+          selectedZonaId={zonaId}
+          onZonaSelect={(id) => {
+            setZonaId(id);
+            setPoblacionId(null);
+          }}
+        />
+
+        {zonaId && (
+          <PoblacionFilter
+            poblaciones={poblaciones}
+            onPoblacionSelect={(id) => setPoblacionId(id)}
             disabled={!zonaId}
-          >
-            <option value="">Selecciona una población</option>
-            {poblaciones.map((poblacion) => (
-              <option key={poblacion.id} value={poblacion.id}>
-                Edad: {poblacion.edad} años - Nivel Socioeconómico: {poblacion.nivelSocioeconomico}
-              </option>
-            ))}
-          </select>
-        </div>
+            selectedPoblacionId={poblacionId}
+          />
+        )}
       </div>
 
       {/* Mensaje si no hay selección */}

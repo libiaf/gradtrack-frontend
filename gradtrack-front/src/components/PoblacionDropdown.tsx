@@ -6,7 +6,7 @@ type Props = {
   poblaciones: Poblacion[];
   onPoblacionSelect: (id: number) => void;
   disabled: boolean;
-  selectedPoblacionId?: number | null; // Nueva prop
+  selectedPoblacionId?: number | null;
 };
 
 const PoblacionFilter = ({ 
@@ -18,7 +18,6 @@ const PoblacionFilter = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPoblacion, setSelectedPoblacion] = useState<Poblacion | null>(null);
   
-  // Efecto para sincronizar la población seleccionada cuando cambian las props
   useEffect(() => {
     if (selectedPoblacionId && poblaciones.length > 0) {
       const poblacion = poblaciones.find(p => p.id === selectedPoblacionId);

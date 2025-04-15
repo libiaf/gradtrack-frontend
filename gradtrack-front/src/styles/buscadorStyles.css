@@ -1,0 +1,31 @@
+.buscador-container {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.buscador-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 25px;
+    border: 2px solid #D95961;
+    background-color: rgba(217, 89, 97, 0.65);
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: box-shadow 0.3s;
+}
+
+.buscador-input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.buscador-input:focus {
+    box-shadow: 0 0 5px rgba(217, 89, 97, 0.5);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .buscador-input {
+        padding: 12px 15px;
+    }
+}

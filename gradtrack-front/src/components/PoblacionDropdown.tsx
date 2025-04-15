@@ -1,27 +1,70 @@
+import React, { useState, useEffect } from "react";
 import { Poblacion } from "my-types";
+import "../styles/poblacionDropdownStyles.css";
 
 type Props = {
   poblaciones: Poblacion[];
   onPoblacionSelect: (id: number) => void;
   disabled: boolean;
+  selectedPoblacionId?: number | null; // Nueva prop
 };
 
-const PoblacionFilter = ({ poblaciones, onPoblacionSelect, disabled }: Props) => {
+const PoblacionFilter = ({ 
+  poblaciones, 
+  onPoblacionSelect, 
+  disabled,
+  selectedPoblacionId 
+}: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedPoblacion, setSelectedPoblacion] = useState<Poblacion | null>(null);
+  
+  // Efecto para sincronizar la población seleccionada cuando cambian las props
+  useEffect(() => {
+    if (selectedPoblacionId && poblaciones.length > 0) {
+      const poblacion = poblaciones.find(p => p.id === selectedPoblacionId);
+      if (poblacion) {
+        setSelectedPoblacion(poblacion);
+      }
+    } else {
+      setSelectedPoblacion(null);
+    }
+  }, [selectedPoblacionId, poblaciones]);
+
+  const handleSelect = (poblacion: Poblacion) => {
+    setSelectedPoblacion(poblacion);
+    onPoblacionSelect(poblacion.id);
+    setIsOpen(false);
+  };
+
   return (
-    <select
-      onChange={(e) => onPoblacionSelect(Number(e.target.value))}
-      disabled={disabled}
-      className="px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-    >
-      <option value="" disabled>
-        Selecciona una población
-      </option>
-      {poblaciones.map((poblacion) => (
-        <option key={poblacion.id} value={poblacion.id}>
-          Edad: {poblacion.edad} años - Nivel Socioeconómico: {poblacion.nivelSocioeconomico}
-        </option>
-      ))}
-    </select>
+    <div className="poblacion-dropdown-container">
+      <div className="poblacion-label">Población:</div>
+      <div className={`poblacion-dropdown ${disabled ? 'disabled' : ''}`}>
+        <div 
+          className="poblacion-selected" 
+          onClick={() => !disabled && setIsOpen(!isOpen)}
+        >
+          {selectedPoblacion ? 
+            `Edad: ${selectedPoblacion.edad} años - Nivel Socioeconómico: ${selectedPoblacion.nivelSocioeconomico}` : 
+            "Selecciona una población"}
+          <span className="dropdown-arrow">▼</span>
+        </div>
+        
+        {isOpen && !disabled && (
+          <div className="poblacion-options">
+            {poblaciones.map((poblacion) => (
+              <div 
+                key={poblacion.id} 
+                className="poblacion-option" 
+                onClick={() => handleSelect(poblacion)}
+              >
+                Edad: {poblacion.edad} años - Nivel Socioeconómico: {poblacion.nivelSocioeconomico}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

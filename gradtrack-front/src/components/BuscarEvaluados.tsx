@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/buscadorStyles.css";
 
 type Props = {
   searchTerm: string;
@@ -7,11 +8,11 @@ type Props = {
 
 const BuscarEvaluados: React.FC<Props> = ({ searchTerm, onSearch }) => {
   return (
-    <div className="mb-4">
+    <div className="buscador-container">
       <input
         type="text"
-        className="w-full p-2 border border-gray-300 rounded"
-        placeholder="Buscar evaluado por nombre..."
+        className="buscador-input"
+        placeholder="Buscar evaluado..."
         value={searchTerm}
         onChange={(e) => onSearch(e.target.value)}
       />

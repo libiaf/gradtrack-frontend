@@ -6,6 +6,7 @@ import DropdownZonas from "../components/ZonaDropdown";
 import PoblacionFilter from "../components/PoblacionDropdown";
 import BuscarEvaluados from "../components/BuscarEvaluados";
 import List from "../components/List";
+import "../styles/listEvaluadoStyles.css";
 import Header from "../components/Header";
 
 const ListEvaluadoPage = () => {
@@ -27,14 +28,7 @@ const ListEvaluadoPage = () => {
 
   useEffect(() => {
     if (zonaId) {
-      getPoblacionesByZona(zonaId).then((data: Poblacion[]) => {
-        setPoblaciones(data);
-        if (data.length > 0) {
-          setPoblacionId(data[0].id);
-        } else {
-          setPoblacionId(null);
-        }
-      });
+      getPoblacionesByZona(zonaId).then((data: Poblacion[]) => setPoblaciones(data));
     } else {
       setPoblaciones([]);
       setPoblacionId(null);
@@ -77,59 +71,60 @@ const ListEvaluadoPage = () => {
   return (
     <>
       <Header title="Evaluados" />
+      <div className="evaluado-container">
+        <div className="evaluado-header">
+          <h3 className="evaluado-title">Lista de evaluados</h3>
+          <button className="add-evaluado-btn">
+            Agregar evaluado
+          </button>
+        </div>
 
-      <div className="flex flex-col gap-4 my-4 px-6">
-        <h3 className="text-3xl font-bold text-gray-800 text-left">Lista de evaluados</h3>
-
-        <div className="flex flex-row gap-4">
-          <DropdownZonas
-            zonas={zonas}
-            selectedZonaId={zonaId}
-            onZonaSelect={(id) => {
-              setZonaId(id);
-            }}
+        <div className="search-container">
+          <BuscarEvaluados
+            searchTerm={searchTerm}
+            onSearch={setSearchTerm}
           />
+        </div>
+
+        <div className="filters-container">
+          <div className="filter-zona">
+            <span className="filter-label">Zona:</span>
+            <DropdownZonas
+              zonas={zonas}
+              selectedZonaId={zonaId}
+              onZonaSelect={(id) => {
+                setZonaId(id);
+                setPoblacionId(null);
+              }}
+            />
+          </div>
 
           {zonaId && (
-            <PoblacionFilter
-              poblaciones={poblaciones}
-              onPoblacionSelect={(id) => setPoblacionId(id)}
-              disabled={!zonaId}
-              selectedPoblacionId={poblacionId}
-            />
+            <div className="filter-poblacion">
+              <span className="filter-label">Población:</span>
+              <PoblacionFilter
+                poblaciones={poblaciones}
+                onPoblacionSelect={(id) => setPoblacionId(id)}
+                disabled={!zonaId}
+              />
+            </div>
           )}
         </div>
 
-        <BuscarEvaluados
-          searchTerm={searchTerm}
-          onSearch={setSearchTerm}
-        />
-
-        <div className="flex justify-end items-center">
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            Add evaluado
-          </button>
+        <div className="evaluado-table-container">
+          {filteredEvaluados.length === 0 ? (
+            <div className="no-results">
+              {searchTerm.trim() !== "" 
+                ? "No se encontraron evaluados con el término de búsqueda" 
+                : "No hay evaluados para mostrar con los filtros actuales"}
+            </div>
+          ) : (
+            <List evaluados={filteredEvaluados} onDelete={handleDelete} />
+          )}
         </div>
-      </div>
-
-      <div className="relative overflow-x-auto px-6 pb-10">
-        {filteredEvaluados.length === 0 ? (
-          <div className="text-center py-4 text-gray-500">
-            {searchTerm.trim() !== ""
-              ? "No se encontraron evaluados con el término de búsqueda"
-              : "No hay evaluados para mostrar con los filtros actuales"}
-          </div>
-        ) : (
-          <List evaluados={filteredEvaluados} onDelete={handleDelete} />
-        )}
       </div>
     </>
   );
 };
 
 export default ListEvaluadoPage;
-
-
-
-
-

@@ -98,6 +98,7 @@ export const getNivelAlerta = async (poblacionId: string) => {
   }
 };
 
+// PARA CREAR EVALUADO
 export const createEvaluado = async (evaluado: Partial<Evaluado>) => {
   try {
     const res = await api.post(`/evaluados/crearevaluado`, evaluado);
@@ -107,4 +108,14 @@ export const createEvaluado = async (evaluado: Partial<Evaluado>) => {
     throw error;
   }
 };
-  
+
+// PARA OBTENER EVALUADO POR ID (VER DETALLES)
+export const getEvaluadoById = async (id: number) => {
+  try {
+    const res = await api.get(`evaluados/getevaluado/${id}`);
+    return res.data.payload;
+  } catch (error) {
+    console.error("Error al obtener evaluado:", error);
+    throw error;
+  }
+};

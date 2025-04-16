@@ -4,6 +4,7 @@ import ListEvaluadoPage from "../pages/ListEvaluadoPage";
 import ErrorPage from "../pages/ErrorPage";
 import GraphsPage from "../pages/GraphsPage";
 import AgregarEvaluado from "../pages/agregarEvaluadoPage";
+import DetallesEvaluado from "../pages/DetallesEvaluado";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
         {
           path: "/agregar-evaluado",
           element: <AgregarEvaluado />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/getdetalles/:id",
+          element: <DetallesEvaluado />,
           errorElement: <ErrorPage />,
         },
       ],

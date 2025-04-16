@@ -1,5 +1,6 @@
 import { Evaluado } from "my-types";
 import { EyeIcon, TrashIcon } from "@heroicons/react/16/solid";
+import { useNavigate } from "react-router-dom";
 import "../styles/listStyles.css";
 
 type Props = {
@@ -8,6 +9,12 @@ type Props = {
 };
 
 export default function List({ evaluados, onDelete }: Props) {
+  const navigate = useNavigate();
+
+  const handleViewDetails = (id: number) => {
+    navigate(`/getdetalles/${id}`);
+  };
+
   return (
     <div className="evaluado-table-container">
       <table className="evaluado-table">
@@ -40,7 +47,7 @@ export default function List({ evaluados, onDelete }: Props) {
               </td>
               <td className="table-cell">
                 <div className="action-buttons-container">
-                  <button className="action-button view-button" title="Ver detalles">
+                  <button className="action-button view-button" title="Ver detalles" onClick={() => handleViewDetails(evaluado.id)}>
                     <EyeIcon className="action-icon" /> 
                   </button>
                   <button 

@@ -8,6 +8,7 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   flex: 1;
   margin-right: 10px;
+  position: relative;
 }
 
 .zona-label {
@@ -15,11 +16,6 @@
   font-weight: bold;
   margin-right: 10px;
   white-space: nowrap;
-}
-
-.zona-dropdown {
-  position: relative;
-  width: 100%;
 }
 
 .zona-selected {
@@ -31,6 +27,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
+  flex: 1;
 }
 
 .dropdown-arrow {
@@ -72,5 +69,9 @@
 
   .zona-label {
     margin-bottom: 6px;
+  }
+  
+  .zona-selected {
+    width: 100%;
   }
 }

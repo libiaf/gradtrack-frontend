@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Zona } from "my-types";
+import "../styles/zonaDropdownStyles.css";
 
 type Props = {
   zonas: Zona[];
@@ -8,20 +9,44 @@ type Props = {
 };
 
 const DropdownZonas: React.FC<Props> = ({ zonas, selectedZonaId, onZonaSelect }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const selectedZona = zonas.find(zona => zona.id === selectedZonaId);
+
+  const handleSelect = (id: number | null) => {
+    onZonaSelect(id);
+    setIsOpen(false);
+  };
+
   return (
-    <div className="mb-4">
-      <select
-        className="w-full p-2 border border-gray-300 rounded"
-        value={selectedZonaId || ""}
-        onChange={(e) => onZonaSelect(e.target.value ? Number(e.target.value) : null)}
+    <div className="zona-dropdown-container">
+      <div className="zona-label">Zona:</div>
+      <div
+        className="zona-selected"
+        onClick={() => setIsOpen(!isOpen)}
       >
-        <option value="">Todas las zonas</option>
-        {zonas.map((zona) => (
-          <option key={zona.id} value={zona.id}>
-            {zona.nombre} - {zona.estado}
-          </option>
-        ))}
-      </select>
+        {selectedZona ? `${selectedZona.nombre}, ${selectedZona.estado}` : "Todas las zonas"}
+        <span className="dropdown-arrow">▼</span>
+      </div>
+
+      {isOpen && (
+        <div className="zona-options">
+          <div
+            className="zona-option"
+            onClick={() => handleSelect(null)}
+          >
+            Todas las zonas
+          </div>
+          {zonas.map((zona) => (
+            <div
+              key={zona.id}
+              className="zona-option"
+              onClick={() => handleSelect(zona.id)}
+            >
+              {zona.nombre}, {zona.estado}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

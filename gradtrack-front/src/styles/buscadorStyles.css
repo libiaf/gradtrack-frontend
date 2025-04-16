@@ -23,7 +23,6 @@
     box-shadow: 0 0 5px rgba(217, 89, 97, 0.5);
 }
 
-/* Responsive styles */
 @media (max-width: 768px) {
     .buscador-input {
         padding: 12px 15px;

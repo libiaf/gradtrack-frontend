@@ -8,6 +8,7 @@ import PoblacionFilter from "../components/PoblacionDropdown";
 import BuscarEvaluados from "../components/BuscarEvaluados";
 import List from "../components/List";
 import Header from "../components/Header";
+import EliminarPopup from "../components/EliminarPopup";
 import "../styles/listEvaluadoStyles.css";
 
 const ListEvaluadoPage = () => {
@@ -19,6 +20,8 @@ const ListEvaluadoPage = () => {
   const [filteredEvaluados, setFilteredEvaluados] = useState<Evaluado[]>([]);
   const [zonas, setZonas] = useState<Zona[]>([]);
   const [poblaciones, setPoblaciones] = useState<Poblacion[]>([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [evaluadoToDelete, setEvaluadoToDelete] = useState<number | null>(null);
 
   useEffect(() => {
     getAllEvaluados().then((data: Evaluado[]) => {
@@ -68,13 +71,28 @@ const ListEvaluadoPage = () => {
     setFilteredEvaluados(filtered);
   }, [zonaId, poblacionId, searchTerm, evaluados, poblaciones]);
 
-  const handleDelete = async (id: number) => {
-    try {
-      await deleteEvaluado(id);
-      setEvaluados(prev => prev.filter(p => p.id !== id));
-    } catch (error) {
-      console.error(error);
+  const handleDeleteClick = (id: number) => {
+    setEvaluadoToDelete(id);
+    setIsPopupOpen(true);
+  };
+
+  const confirmDelete = async () => {
+    if (evaluadoToDelete !== null) {
+      try {
+        await deleteEvaluado(evaluadoToDelete);
+        setEvaluados(prev => prev.filter(p => p.id !== evaluadoToDelete));
+        setIsPopupOpen(false);
+        setEvaluadoToDelete(null);
+      } catch (error) {
+        console.error(error);
+        setIsPopupOpen(false);
+      }
     }
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setEvaluadoToDelete(null);
   };
 
   const handleAgregarEvaluado = () => {
@@ -85,7 +103,6 @@ const ListEvaluadoPage = () => {
       } 
     });
   };
-
 
   return (
     <>
@@ -141,9 +158,15 @@ const ListEvaluadoPage = () => {
               : "No hay evaluados para mostrar con los filtros actuales"}
           </div>
         ) : (
-          <List evaluados={filteredEvaluados} onDelete={handleDelete} />
+          <List evaluados={filteredEvaluados} onDelete={handleDeleteClick} />
         )}
       </div>
+      
+      <EliminarPopup 
+        isOpen={isPopupOpen} 
+        onClose={closePopup} 
+        onConfirm={confirmDelete} 
+      />
     </>
   );
 };

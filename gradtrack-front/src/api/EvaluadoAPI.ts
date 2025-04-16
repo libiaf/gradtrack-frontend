@@ -119,3 +119,14 @@ export const getEvaluadoById = async (id: number) => {
     throw error;
   }
 };
+
+// PARA EDITAR EVALUADO
+export const updateEvaluado = async (id: number, evaluadoData: Partial<Evaluado>) => {
+  try {
+    const res = await api.patch(`/evaluados/updateevaluado/${id}`, evaluadoData);
+    return res.data;
+  } catch (error) {
+    console.error("Error al actualizar evaluado:", error);
+    throw error;
+  }
+};

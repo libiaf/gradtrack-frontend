@@ -7,7 +7,7 @@ type HeaderProps = {
 export default function Header({ title }: HeaderProps) {
   return (
     <header className="header-fixed d-flex justify-content-between p-3 bg-white shadow-sm">
-      <h1 className="fs-1 mt-3 ms-4 evaluados">{title}</h1>
+      <h1 className="fs-2 mt-3 ms-4 evaluados">{title}</h1>
       <div className="d-flex align-items-center perfil">
         <img src={perfilImg} alt="Foto de Perfil" className="img-fluid" style={{ maxWidth: "130px" }} />
         <div>

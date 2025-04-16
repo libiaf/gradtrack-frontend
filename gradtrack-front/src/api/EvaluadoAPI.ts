@@ -97,4 +97,14 @@ export const getNivelAlerta = async (poblacionId: string) => {
     throw error;
   }
 };
+
+export const createEvaluado = async (evaluado: Partial<Evaluado>) => {
+  try {
+    const res = await api.post(`/evaluados/crearevaluado`, evaluado);
+    return res.data;
+  } catch (error) {
+    console.error("Error al crear evaluado:", error);
+    throw error;
+  }
+};
   

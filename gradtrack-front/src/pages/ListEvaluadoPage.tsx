@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Evaluado, Zona, Poblacion } from "my-types";
 import { getAllEvaluados, getZonas, getPoblacionesByZona } from "../api/EvaluadoAPI";
 import { deleteEvaluado } from "../api/EvaluadoAPI";
@@ -10,6 +11,7 @@ import Header from "../components/Header";
 import "../styles/listEvaluadoStyles.css";
 
 const ListEvaluadoPage = () => {
+  const navigate = useNavigate();
   const [zonaId, setZonaId] = useState<number | null>(null);
   const [poblacionId, setPoblacionId] = useState<number | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -75,6 +77,15 @@ const ListEvaluadoPage = () => {
     }
   };
 
+  const handleAgregarEvaluado = () => {
+    navigate("/agregar-evaluado", { 
+      state: { 
+        zonaId, 
+        poblacionId 
+      } 
+    });
+  };
+
   return (
     <>
       <Header title="Evaluados" />
@@ -107,7 +118,15 @@ const ListEvaluadoPage = () => {
         />
 
         <div className="flex justify-end items-center mb-4">
-          <button className="add-evaluado-btn">
+          <button 
+            className="add-evaluado-btn" 
+            onClick={handleAgregarEvaluado}
+            disabled={!zonaId || !poblacionId}
+            style={{ 
+              opacity: (!zonaId || !poblacionId) ? 0.5 : 1,
+              cursor: (!zonaId || !poblacionId) ? 'not-allowed' : 'pointer'
+            }}
+          >
             Agregar evaluado
           </button>
         </div>

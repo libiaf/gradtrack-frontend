@@ -3,19 +3,13 @@ import App from "../App";
 import ListEvaluadoPage from "../pages/ListEvaluadoPage";
 import ErrorPage from "../pages/ErrorPage";
 import GraphsPage from "../pages/GraphsPage";
-// import PageEvaluado from "../components/PageEvaluado";
-
+import AgregarEvaluado from "../pages/agregarEvaluadoPage";
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
       children: [
-        // {
-        //   path: "/evaluados",
-        //   element: <ListEvaluadoPage />,
-        //   errorElement: <ErrorPage />,
-        // },
         {
           path: "/graphs",
           element: <GraphsPage />,
@@ -24,6 +18,11 @@ const router = createBrowserRouter([
         {
           path: "/pageevaluado",
           element: <ListEvaluadoPage />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/agregar-evaluado",
+          element: <AgregarEvaluado />,
           errorElement: <ErrorPage />,
         },
       ],

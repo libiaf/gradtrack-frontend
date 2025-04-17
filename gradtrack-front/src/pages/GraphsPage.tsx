@@ -7,7 +7,6 @@ const GraphsPage: React.FC = () => {
     <>
         <Header title="Evaluaciones"/>
         <div className="container mx-auto px-4 py-6">
-        <h1 className="text-2xl font-bold mb-6">Dashboard de Estadísticas</h1>
         <div className="bg-white rounded-lg shadow-md p-6">
             <Graphs />
         </div>

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter_18pt-Regular.ttf') format('truetype');
+}
+
 .buscador-container {
     margin-bottom: 15px;
     width: 100%;
@@ -13,6 +18,7 @@
     font-size: 1rem;
     outline: none;
     transition: box-shadow 0.3s;
+    font-family: 'Inter';
 }
 
 .buscador-input::placeholder {

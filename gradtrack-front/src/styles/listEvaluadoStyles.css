@@ -1,14 +1,12 @@
+@font-face {
+  font-family: 'InterSemiBold';
+  src: url('../fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
 .evaluado-container {
   padding: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.evaluado-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.5rem;
 }
 
 .evaluado-title {
@@ -33,6 +31,7 @@
   align-items: center;
   justify-content: center;
   min-width: 200px;
+  font-family: 'InterSemiBold';
 }
 
 .add-evaluado-btn:hover {

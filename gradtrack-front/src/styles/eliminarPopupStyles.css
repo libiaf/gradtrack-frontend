@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter_18pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterBold';
+    src: url('../fonts/Inter_18pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterSemiBold';
+    src: url('../fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
 .popup-overlay {
     position: fixed;
     top: 0;
@@ -26,6 +41,7 @@
     font-weight: bold;
     margin-bottom: 15px;
     color: #333;
+    font-family: 'InterBold';
 }
 
 .popup-divider {
@@ -38,6 +54,7 @@
     font-size: 1.2rem;
     margin-bottom: 30px;
     color: #333;
+    font-family: 'Inter';
 }
 
 .popup-buttons {
@@ -55,6 +72,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-family: 'InterSemiBold';
 }
 
 .popup-cancel-btn:hover {
@@ -70,6 +88,7 @@
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.2s;
+    font-family: 'InterSemiBold';
 }
 
 .popup-delete-btn:hover {

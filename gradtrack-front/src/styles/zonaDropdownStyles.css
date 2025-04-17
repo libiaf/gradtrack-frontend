@@ -1,3 +1,18 @@
+@font-face {
+  font-family: 'Inter';
+  src: url('../fonts/Inter_18pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'InterBold';
+  src: url('../fonts/Inter_18pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'InterSemiBold';
+  src: url('../fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
 .zona-dropdown-container {
   display: flex;
   align-items: center;
@@ -13,9 +28,9 @@
 
 .zona-label {
   font-size: 1.4rem;
-  font-weight: bold;
   margin-right: 10px;
   white-space: nowrap;
+  font-family: 'InterBold';
 }
 
 .zona-selected {
@@ -53,6 +68,7 @@
   cursor: pointer;
   transition: background-color 0.2s;
   font-size: 0.9rem;
+  font-family: 'Inter';
 }
 
 .zona-option:hover {

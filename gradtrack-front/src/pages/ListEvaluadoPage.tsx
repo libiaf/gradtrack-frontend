@@ -109,7 +109,6 @@ const ListEvaluadoPage = () => {
       <Header title="Evaluados" />
 
       <div className="flex flex-col gap-4 my-4 px-6">
-        <h3 className="text-3xl font-bold text-gray-800 text-left">Lista de evaluados</h3>
 
         <div className="flex flex-row gap-4">
           <DropdownZonas

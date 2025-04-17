@@ -223,7 +223,7 @@ const Graphs: React.FC<GraphsProps> = ({ initialZonaId = null, initialPoblacionI
 
   return (
     <div className="dashboard-container">
-      <div className="filters-container" style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
+      <div className="filters-container">
         <DropdownZonas
           zonas={zonas}
           selectedZonaId={zonaId}
@@ -246,7 +246,7 @@ const Graphs: React.FC<GraphsProps> = ({ initialZonaId = null, initialPoblacionI
       {/* Mensaje si no hay selección */}
       {!poblacionId && (
         <div className="text-center p-10 bg-gray-50 rounded-lg shadow-sm">
-          <h3 className="text-xl text-gray-600">Selecciona una zona y una población para ver las estadísticas</h3>
+          <h3 className="text-xl text-gray-600 seleccion-mensaje">Selecciona una zona y una población para ver las estadísticas</h3>
         </div>
       )}
 
@@ -282,7 +282,6 @@ const Graphs: React.FC<GraphsProps> = ({ initialZonaId = null, initialPoblacionI
                     <XAxis dataKey="name" />
                     <YAxis allowDecimals={false} />
                     <Tooltip content={<CustomBarTooltip />} />
-                    <Legend />
                     <Bar 
                       dataKey="value" 
                       name="Cantidad" 

@@ -29,6 +29,9 @@ export default function List({ evaluados, onDelete }: Props) {
             <th scope="col" className="header-cell">
               Apellidos
             </th>
+            <th scope="col" className="header-cell">
+              Graduado
+            </th>
             <th scope="col" className="header-cell text-center">
             </th>
           </tr>
@@ -44,6 +47,9 @@ export default function List({ evaluados, onDelete }: Props) {
               </td>
               <td className="table-cell">
                 {evaluado.apellidos}
+              </td>
+              <td className="table-cell">
+                {evaluado.graduado}
               </td>
               <td className="table-cell">
                 <div className="action-buttons-container">

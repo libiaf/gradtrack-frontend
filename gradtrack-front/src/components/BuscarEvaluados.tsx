@@ -1,4 +1,3 @@
-import React from "react";
 import "../styles/buscadorStyles.css";
 
 type Props = {
@@ -6,7 +5,7 @@ type Props = {
   onSearch: (term: string) => void;
 };
 
-const BuscarEvaluados: React.FC<Props> = ({ searchTerm, onSearch }) => {
+const BuscarEvaluados = ({ searchTerm, onSearch }: Props) => {
   return (
     <div className="buscador-container">
       <input

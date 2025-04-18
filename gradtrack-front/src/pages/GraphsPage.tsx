@@ -1,8 +1,7 @@
-import React from 'react';
 import Graphs from './Graphs';
 import Header from '../components/Header';
 
-const GraphsPage: React.FC = () => {
+const GraphsPage = () => {
   return (
     <>
         <Header title="Evaluaciones"/>

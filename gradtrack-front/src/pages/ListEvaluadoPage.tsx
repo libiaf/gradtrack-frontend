@@ -83,6 +83,7 @@ const ListEvaluadoPage = () => {
         setEvaluados(prev => prev.filter(p => p.id !== evaluadoToDelete));
         setIsPopupOpen(false);
         setEvaluadoToDelete(null);
+        alert(`Evaluado eliminado con éxito`); 
       } catch (error) {
         console.error(error);
         setIsPopupOpen(false);

@@ -1,4 +1,3 @@
-import React from 'react';
 import '../styles/eliminarPopupStyles.css';
 
 interface EliminarPopupProps {
@@ -7,7 +6,7 @@ interface EliminarPopupProps {
   onConfirm: () => void;
 }
 
-const EliminarPopup: React.FC<EliminarPopupProps> = ({ isOpen, onClose, onConfirm }) => {
+const EliminarPopup = ({ isOpen, onClose, onConfirm}: EliminarPopupProps) => {
   if (!isOpen) return null;
 
   return (

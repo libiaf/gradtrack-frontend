@@ -80,6 +80,7 @@ const EditarEvaluado = () => {
     try {
       setSaving(true);
       await updateEvaluado(parseInt(id), formData);
+      alert(`Evaluado actualizado a ${formData.nombre} ${formData.apellidos} con éxito`); 
       navigate("/pageevaluado");
     } catch (err) {
       setError("Error al actualizar el evaluado");

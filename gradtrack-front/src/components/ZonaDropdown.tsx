@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Zona } from "my-types";
 import "../styles/zonaDropdownStyles.css";
 
@@ -8,7 +8,7 @@ type Props = {
   onZonaSelect: (id: number | null) => void;
 };
 
-const DropdownZonas: React.FC<Props> = ({ zonas, selectedZonaId, onZonaSelect }) => {
+const DropdownZonas= ({ zonas, selectedZonaId, onZonaSelect} : Props) => {
   const [isOpen, setIsOpen] = useState(false);
   const selectedZona = zonas.find(zona => zona.id === selectedZonaId);
 

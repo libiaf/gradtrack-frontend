@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   PieChart, Pie, Cell, ResponsiveContainer,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
@@ -22,7 +22,7 @@ interface GraphsProps {
   initialPoblacionId?: number | null;
 }
 
-const Graphs: React.FC<GraphsProps> = ({ initialZonaId = null, initialPoblacionId = null }) => {
+const Graphs = ({ initialZonaId = null, initialPoblacionId = null }: GraphsProps) => {
   const [zonaId, setZonaId] = useState<number | null>(initialZonaId);
   const [poblacionId, setPoblacionId] = useState<number | null>(initialPoblacionId);
   const [zonas, setZonas] = useState<Zona[]>([]);

@@ -91,6 +91,7 @@ const AgregarEvaluado = () => {
         ...formData,
         poblacionId
       });
+      alert(`Evaluado ${formData.nombre} ${formData.apellidos} creado con éxito`);
       navigate("/pageevaluado");
     } catch (err) {
       setError("Error al crear el evaluado");

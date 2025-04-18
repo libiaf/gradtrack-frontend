@@ -60,6 +60,11 @@
     color: #D95961 !important;
 }
 
+.nav-link.active {
+    background-color: #EFEFEF !important;
+    color: #D95961 !important;
+}
+
 .nav-link:visited {
     color: #EFEFEF;
 }

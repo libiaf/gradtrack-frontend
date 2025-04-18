@@ -3,15 +3,21 @@ import App from "../App";
 import ListEvaluadoPage from "../pages/ListEvaluadoPage";
 import ErrorPage from "../pages/ErrorPage";
 import GraphsPage from "../pages/GraphsPage";
-import AgregarEvaluado from "../pages/AgregarEvaluadoPage";
 import DetallesEvaluado from "../pages/DetallesEvaluado";
 import EditarEvaluado from "../pages/EditarEvaluado";
+import AgregarEvaluado from "../pages/AgregarEvaluadoPage";
+
 
 const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
       children: [
+        {
+          path: '/',
+          element: <GraphsPage />,
+          errorElement: <ErrorPage />, 
+        },
         {
           path: "/graphs",
           element: <GraphsPage />,

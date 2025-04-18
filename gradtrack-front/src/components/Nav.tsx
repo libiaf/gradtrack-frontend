@@ -1,6 +1,7 @@
 import logoImg from "../images/logo.png";
 import configImg from "../images/configuracion.png";
 import "../styles/navStyles.css";
+import { NavLink } from "react-router-dom";
 
 export default function Nav() {
   return (
@@ -10,12 +11,12 @@ export default function Nav() {
           <img src={logoImg} alt="Logo" className="img-fluid" />
         </div>
         <div className="nav-links d-flex align-items-center">
-          <a href="#" className="nav-link rounded p-2 text-center text-decoration-none">
+          <NavLink to="/graphs" className="nav-link rounded p-2 text-center text-decoration-none">
             Evaluaciones
-          </a>
-          <a href="#" className="nav-link rounded p-2 text-center text-decoration-none">
+          </NavLink>
+          <NavLink to="/pageevaluado" className="nav-link rounded p-2 text-center text-decoration-none">
             Evaluados
-          </a>
+          </NavLink>
         </div>
         <div className="config d-flex align-items-center">
           <div className="config-icon">

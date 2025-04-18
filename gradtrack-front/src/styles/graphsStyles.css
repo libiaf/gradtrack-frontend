@@ -157,6 +157,21 @@
     .dashboard-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+    
+}
+
+@media (max-width: 991px) {
+    .filters-container {
+        display: flex;
+        flex-direction: column; 
+        gap: 15px;
+    }
+    
+}
+
+.filter-zona,.filter-poblacion {
+    flex: 0 0 100%; 
+    min-width: 100%;
 }
 
 /* Estadísticas */

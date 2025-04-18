@@ -15,6 +15,13 @@
   color: #262730;
 }
 
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
 /* Boton de agregar evaluado */
 .add-evaluado-btn {
   background-color: #FFFFFF;
@@ -60,3 +67,14 @@
     width: 100%;
   }
 }
+
+@media (max-width: 991px) {
+  .filters-container {
+      display: flex;
+      flex-direction: column; 
+      gap: 15px;
+  }
+
+}
+
+

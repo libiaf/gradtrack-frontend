@@ -109,8 +109,7 @@ const ListEvaluadoPage = () => {
       <Header title="Evaluados" />
 
       <div className="flex flex-col gap-4 my-4 px-6">
-
-        <div className="flex flex-row gap-4">
+        <div className="filters-container">
           <DropdownZonas
             zonas={zonas}
             selectedZonaId={zonaId}

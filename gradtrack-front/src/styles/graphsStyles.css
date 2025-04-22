@@ -1,0 +1,276 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter_18pt-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterBold';
+    src: url('../fonts/Inter_18pt-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'InterSemiBold';
+    src: url('../fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
+.selecccion-mensaje {
+    font-family: 'Inter';
+    color: #262730;
+}
+
+.dashboard-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.dashboard-subtitle {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #262730;
+    font-family: 'InterBold';
+}
+
+.filters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.filter-zona {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.filter-poblacion {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.filter-label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: white;
+    font-weight: bold;
+    z-index: 10;
+}
+
+/* Dropdown zona */
+.zona-dropdown {
+    width: 100%;
+    padding: 15px 15px 15px 100px;
+    border-radius: 25px;
+    border: none;
+    background-color: #666A8F;
+    color: white;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.zona-dropdown option {
+    background-color: #9a9dc0;
+    color: white;
+}
+
+/* Dropdown poblacion */
+.poblacion-dropdown {
+    width: 100%;
+    padding: 15px 15px 15px 120px;
+    border-radius: 25px;
+    border: none;
+    background-color: #C898B9;
+    color: white;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.filter-poblacion::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: white;
+    pointer-events: none;
+}
+
+.filter-zona::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: white;
+    pointer-events: none;
+}
+
+.poblacion-dropdown option {
+    background-color: #D7C0D0;
+    color: white;
+}
+
+.poblacion-dropdown:disabled {
+    background-color: #D7C0D0;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Total evaluados */
+.total-evaluados {
+    background-color: #D95961;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.total-label {
+    margin-right: 20px;
+    font-size: 17px;
+    font-family: 'InterBold';
+}
+
+.total-number {
+    font-size: 20px;
+    font-family: 'Inter';
+}
+
+/* Dashboard layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 992px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+}
+
+@media (max-width: 991px) {
+    .filters-container {
+        display: flex;
+        flex-direction: column; 
+        gap: 15px;
+    }
+    
+}
+
+.filter-zona,.filter-poblacion {
+    flex: 0 0 100%; 
+    min-width: 100%;
+}
+
+/* Estadísticas */
+.stat-card {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+.card-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #262730;
+}
+
+/* Total graduación */
+.total-card {
+    grid-column: 1 / -1;
+}
+
+.total-chart-container {
+    height: 400px;
+}
+
+/* Nivel de alerta */
+.alerta-card {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+
+.alerta-title {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #262730;
+    font-family: 'InterBold';
+}
+
+.nivel-alerta {
+    display: block;
+    font-size: 46px;
+    font-weight: bold;
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.nivel-bajo {
+    background-color: #77BA99;
+}
+
+.nivel-alto {
+    background-color: #F59E0B;
+}
+
+.nivel-grave {
+    background-color: #DC2626;
+}
+
+.nivel-muy-bajo {
+    background-color: #059669;
+}
+
+/* Estilo para cada gráfica */
+.chart-container {
+    height: 300px;
+    position: relative;
+}
+
+.donut-center {
+    position: absolute;
+    top: 44%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.donut-number {
+    font-size: 28px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1;
+}
+
+.donut-label {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.recharts-pie-sector {
+    transition: transform 0.3s ease;
+}
+
+.recharts-pie-sector:hover {
+    transform: scale(1.03);
+}

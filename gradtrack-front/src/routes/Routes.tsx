@@ -2,7 +2,10 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import ListEvaluadoPage from "../pages/ListEvaluadoPage";
 import ErrorPage from "../pages/ErrorPage";
-import Graphs from "../pages/Graphs";
+import GraphsPage from "../pages/GraphsPage";
+import DetallesEvaluado from "../pages/DetallesEvaluado";
+import EditarEvaluado from "../pages/EditarEvaluado";
+import AgregarEvaluado from "../pages/AgregarEvaluadoPage";
 
 
 const router = createBrowserRouter([
@@ -11,13 +14,33 @@ const router = createBrowserRouter([
       element: <App />,
       children: [
         {
-          path: "/evaluados",
+          path: '/',
+          element: <GraphsPage />,
+          errorElement: <ErrorPage />, 
+        },
+        {
+          path: "/graphs",
+          element: <GraphsPage />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/pageevaluado",
           element: <ListEvaluadoPage />,
           errorElement: <ErrorPage />,
         },
         {
-          path: "/graphs",
-          element: <Graphs />,
+          path: "/agregar-evaluado",
+          element: <AgregarEvaluado />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/getdetalles/:id",
+          element: <DetallesEvaluado />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/evaluados/edit/:id",
+          element: <EditarEvaluado />,
           errorElement: <ErrorPage />,
         },
       ],

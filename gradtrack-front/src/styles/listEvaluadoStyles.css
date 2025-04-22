@@ -1,0 +1,80 @@
+@font-face {
+  font-family: 'InterSemiBold';
+  src: url('../fonts/Inter_18pt-SemiBold.ttf') format('truetype');
+}
+
+.evaluado-container {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.evaluado-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #262730;
+}
+
+.filters-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+/* Boton de agregar evaluado */
+.add-evaluado-btn {
+  background-color: #FFFFFF;
+  color: #D95961;
+  border: 2px solid #D95961;
+  border-radius: 30px;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(217, 89, 97, 0.3);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  font-family: 'InterSemiBold';
+}
+
+.add-evaluado-btn:hover {
+  background-color: #D95961;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.no-results {
+  text-align: center;
+  padding: 2rem;
+  color: #643455;
+  background-color: rgba(215, 192, 208, 0.2);
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .evaluado-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .add-evaluado-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 991px) {
+  .filters-container {
+      display: flex;
+      flex-direction: column; 
+      gap: 15px;
+  }
+
+}
+
+

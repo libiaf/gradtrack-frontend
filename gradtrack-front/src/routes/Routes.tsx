@@ -5,7 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import GraphsPage from "../pages/GraphsPage";
 import DetallesEvaluado from "../pages/DetallesEvaluado";
 import EditarEvaluado from "../pages/EditarEvaluado";
-import AgregarEvaluado from "../pages/AgregarEvaluadoPage";
+import AgregarEvaluado from "../pages/agregarEvaluadoPage";
 
 
 const router = createBrowserRouter([

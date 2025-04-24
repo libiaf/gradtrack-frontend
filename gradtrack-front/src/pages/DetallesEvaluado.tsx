@@ -1,25 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Evaluado, Poblacion, Zona } from "my-types";
+import { Evaluado} from "my-types";
 import { getEvaluadoById } from "../api/EvaluadoAPI";
 import { PencilSquareIcon, ArrowLeftIcon } from "@heroicons/react/24/solid";
 import "../styles/detallesEvaluado.css";
 import Header from "../components/Header";
 
-interface EvaluadoConDetalles extends Evaluado {
-  Poblacion?: {
-    id: number;
-    edad: number;
-    nivelSocioeconomico: string;
-    zonaId: number;
-    Zona?: Zona;
-  };
-}
-
 const DetallesEvaluado = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [evaluado, setEvaluado] = useState<EvaluadoConDetalles | null>(null);
+  const [evaluado, setEvaluado] = useState<Evaluado | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -114,38 +104,6 @@ const DetallesEvaluado = () => {
               </div>
             </div>
           </div>
-
-          {evaluado.Poblacion && (
-            <div className="detalles-card">
-              <h3 className="section-title">Información Demográfica</h3>
-              <div className="detalles-row">
-                <div className="detalles-item">
-                  <span className="detalles-label">Edad:</span>
-                  <span className="detalles-value">{evaluado.Poblacion.edad}</span>
-                </div>
-                <div className="detalles-item">
-                  <span className="detalles-label">Nivel Socioeconómico:</span>
-                  <span className="detalles-value">{evaluado.Poblacion.nivelSocioeconomico}</span>
-                </div>
-              </div>
-              
-              {evaluado.Poblacion.Zona && (
-                <>
-                  <div className="detalles-divider"></div>
-                  <div className="detalles-row">
-                    <div className="detalles-item">
-                      <span className="detalles-label">Zona:</span>
-                      <span className="detalles-value">{evaluado.Poblacion.Zona.nombre}</span>
-                    </div>
-                    <div className="detalles-item">
-                      <span className="detalles-label">Estado:</span>
-                      <span className="detalles-value">{evaluado.Poblacion.Zona.estado}</span>
-                    </div>
-                  </div>
-                </>
-              )}
-            </div>
-          )}
         </div>
       </div>
     </div>
